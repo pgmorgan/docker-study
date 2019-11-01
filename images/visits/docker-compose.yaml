@@ -1,0 +1,19 @@
+# Docker Compose Version
+version:  '3'
+
+# Services = ~Containers
+services:
+  redis-server:
+    image:  'redis'
+  node-app:
+    restart:  always
+    build:    .
+    ports:
+    # '-' in a docker-compose.yaml file is how you indicate an array
+      - "8081:8081"
+
+# NB: No verbage was provided about the two containers being networked
+#     to communicate with each other.  SIMPLY by setting up these two
+#     containers in the same Docker Compose file,
+#     they will be created on the same network and they'll have free access
+#     to communicate with each other in any way that they please.
